@@ -1,7 +1,5 @@
 fastapi
 uvicorn
-beanie
-motor
 pydantic
 requests
 python-dotenv

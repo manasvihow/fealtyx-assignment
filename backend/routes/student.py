@@ -9,14 +9,12 @@ import asyncio
 router = APIRouter(prefix="/student", tags=["Students"])
 students_lock = asyncio.Lock()
 
-# -------------------------
 # In-memory storage
-# -------------------------
+
 students: Dict[str, dict] = {}
 
-# -------------------------
 # Pydantic models
-# -------------------------
+
 class StudentCreateDTO(BaseModel):
     name: str
     age: int = Field(..., ge=0, le=150)
