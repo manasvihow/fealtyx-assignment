@@ -16,9 +16,9 @@ students: Dict[str, dict] = {}
 # Pydantic models
 
 class StudentCreateDTO(BaseModel):
-    name: str
-    age: int = Field(..., ge=0, le=150)
-    email: EmailStr
+    name: str = Field(min_length=1, description="Student's full name")
+    age: int = Field(..., ge=0, le=150, description="Student's age")
+    email: EmailStr = Field(..., description="Student's email address")
 
 class StudentResponseDTO(StudentCreateDTO):
     id: str
@@ -38,7 +38,6 @@ async def create_student(student: StudentCreateDTO):
     return {**student.dict(), "id": student_id}
 
 
-
 #Get all Students
 @router.get("/", response_model=list[StudentResponseDTO])
 async def get_all_students():
@@ -54,6 +53,7 @@ async def get_student_by_id(student_id: UUID):
         raise HTTPException(status_code=404, detail="Student not found")
     return {**student, "id": sid}
 
+
 #Update Student by ID
 @router.put("/{student_id}", response_model=StudentResponseDTO)
 async def update_student(student_id: UUID, updated: StudentCreateDTO):
@@ -65,8 +65,6 @@ async def update_student(student_id: UUID, updated: StudentCreateDTO):
     return {**updated.dict(), "id": sid}
 
 
-
-
 #Delete Student by ID
 @router.delete("/{student_id}", status_code=204)
 async def delete_student(student_id: UUID):
@@ -75,8 +73,7 @@ async def delete_student(student_id: UUID):
         if sid not in students:
             raise HTTPException(status_code=404, detail="Student not found")
         del students[sid]
-
-
+        
 
 #Summary of Student with Ollama
 @router.get("/{student_id}/summary")
