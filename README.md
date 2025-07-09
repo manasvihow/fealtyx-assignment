@@ -78,7 +78,7 @@ Visit Swagger UI: [http://localhost:8000/docs](http://localhost:8000/docs)
 
 ---
 
-## 🧪 Example API Requests
+## Example API Requests
 
 ### Create a student
 
