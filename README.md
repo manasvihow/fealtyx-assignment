@@ -1,4 +1,4 @@
-# 🧠 FealtyX - Student API Assignment
+# FealtyX - Student API Assignment
 
 This project is a simple REST API built with **FastAPI** that performs basic **CRUD operations** on an in-memory list of students. It also integrates with **Ollama** to generate AI-based summaries using local LLMs (e.g., LLaMA 3).
 
@@ -28,6 +28,14 @@ This project is a simple REST API built with **FastAPI** that performs basic **C
 - asyncio for concurrency
 
 ---
+
+## Live Demo
+
+**API Documentation:** [https://fealtyx-assignment-5aws.onrender.com/docs](https://fealtyx-assignment-5aws.onrender.com/docs)
+
+> **Note:** The Ollama-based summary generation (`/students/{id}/summary`) **only works locally**.  
+> This feature relies on the Ollama CLI to run a local LLM model, which cannot be executed on cloud platforms like Render.
+
 
 ## Setup Instructions
 
@@ -143,22 +151,24 @@ curl http://localhost:8000/student/<uuid>/summary
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
+```bash
+fealtyx-assignment/
+└── backend/
+    ├── main.py
+    ├── routes/
+    │   └── student.py
+    ├── services/
+    │   └── ollama.py
+    ├── requirements.txt
+    └── README.md
 ```
-.
-├── main.py
-├── routes/
-│   └── student.py
-├── services/
-│   └── ollama.py
-├── requirements.txt
-└── README.md
-```
+
 
 ---
 
-## 👤 Author
+## Author
 
 **Manasvi**  
 [GitHub](https://github.com/manasvihow) • [Email](mailto:manasvi.bathula@gmail.com)
